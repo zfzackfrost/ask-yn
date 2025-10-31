@@ -1,0 +1,14 @@
+[package]
+name = "ask-yn"
+description = "Terminal utility program to prompt the user to answer yes or no."
+keywords = ["confirm", "command-line", "tool"]
+categories = ["command-line-utilities"]
+homepage = "https://github.com/zfzackfrost/ask-yn"
+repository = "https://github.com/zfzackfrost/ask-yn"
+license = "MIT"
+readme = "README.md"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+clap = { version = "4.5.51", features = ["derive"] }
