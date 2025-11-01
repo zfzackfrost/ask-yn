@@ -16,11 +16,12 @@ else
 fi
 ```
 
-The output in this case should look something like the following. Program output is in **bold**:
+The output in this case should look something like the following. Program
+output is in **bold**, user input is in _italic_:
 
-> **Do a task?** maybe <br />
+> **Do a task?** _maybe_ <br />
 > **Unrecognized response! Do a task?** <br />
-> **Unrecognized response! Do a task?** yes <br />
+> **Unrecognized response! Do a task?** _yes_ <br />
 > Doing a task
 
 ### With Default Argument
@@ -35,8 +36,9 @@ else
 fi
 ```
 
-The output in this case should look something like the following. Program output is in **bold**:
+The output in this case should look something like the following. Program
+output is in **bold**, user input is in _italic_:
 
-> **Do a task?** maybe <br />
+> **Do a task?** _maybe_ <br />
 > **Unrecognized response! Do a task?** <br />
 > Task canceled
