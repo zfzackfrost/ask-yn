@@ -5,7 +5,7 @@ use std::process::ExitCode;
 #[derive(Parser)]
 #[command(version, about, long_about = None)]
 struct Cli {
-    /// Prompt string to ask the user for input
+    /// Text for the yes or no question prompt
     prompt: String,
     /// The default response, if no input is received from the user.
     #[arg(long, short, value_parser = ["yes", "y", "no", "n"])]
