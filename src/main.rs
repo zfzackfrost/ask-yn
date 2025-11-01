@@ -11,6 +11,7 @@ struct Cli {
     #[arg(long, short, value_parser = ["yes", "y", "no", "n"])]
     default: Option<String>,
 }
+const ERROR_CODE: u8 = 0xff;
 
 fn main() -> ExitCode {
     let cli = Cli::parse();
@@ -18,11 +19,17 @@ fn main() -> ExitCode {
     let mut output = std::io::stdout();
 
     print!("{} ", cli.prompt);
-    output.flush().unwrap();
+    if let Err(err) = output.flush() {
+        eprintln!("{err}");
+        return ExitCode::from(ERROR_CODE);
+    }
 
     loop {
         let mut buf = String::new();
-        input.read_line(&mut buf).unwrap();
+        if let Err(err) = input.read_line(&mut buf) {
+            eprintln!("{err}");
+            return ExitCode::from(ERROR_CODE);
+        }
 
         let mut line = buf.trim().to_lowercase();
         if let Some(default) = cli.default.as_ref()
