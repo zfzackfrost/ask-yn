@@ -25,7 +25,7 @@ The output in this case should look something like the following. Program output
 
 ### With Default Argument
 
-With a default argument, the program will use it when not input is provided.
+With a default argument, the program will use it when no input is provided.
 
 ```sh
 if ask-yn "Do a task?" -d n; then
