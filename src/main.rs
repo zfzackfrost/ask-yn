@@ -7,7 +7,7 @@ use std::process::ExitCode;
 struct Cli {
     /// Text for the yes or no question prompt
     prompt: String,
-    /// Invert the return code so yes returns 0 and no returns 1
+    /// Invert the return code so yes returns 1 and no returns 0
     #[arg(long, short)]
     invert: bool,
     /// The default response, if no input is received from the user.
