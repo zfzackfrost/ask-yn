@@ -7,6 +7,9 @@ use std::process::ExitCode;
 struct Cli {
     /// Text for the yes or no question prompt
     prompt: String,
+    /// Invert the return code so yes returns 0 and no returns 1
+    #[arg(long, short)]
+    invert: bool,
     /// The default response, if no input is received from the user.
     #[arg(long, short, value_parser = ["yes", "y", "no", "n"])]
     default: Option<String>,
@@ -24,6 +27,11 @@ fn main() -> ExitCode {
         return ExitCode::from(ERROR_CODE);
     }
 
+    let mut exit_success = ExitCode::SUCCESS;
+    let mut exit_failure = ExitCode::FAILURE;
+    if cli.invert {
+        std::mem::swap(&mut exit_failure, &mut exit_success);
+    }
     loop {
         let mut buf = String::new();
         if let Err(err) = input.read_line(&mut buf) {
@@ -39,9 +47,9 @@ fn main() -> ExitCode {
         }
 
         if line == "y" || line == "yes" {
-            break ExitCode::SUCCESS;
+            break exit_success;
         } else if line == "n" || line == "no" {
-            break ExitCode::FAILURE;
+            break exit_failure;
         } else {
             print!("Unrecognized response! {} ", cli.prompt);
             output.flush().unwrap();
