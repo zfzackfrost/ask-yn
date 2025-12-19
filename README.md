@@ -42,3 +42,17 @@ output is in **bold**, user input is in _italic_:
 > **Do a task?** _maybe_ <br />
 > **Unrecognized response! Do a task?** <br />
 > Task canceled
+
+### Invert Return code
+
+The `-i`/`--invert` flag in this program inverts the return code. With this
+flag, the program will return a `1` when given a yes answer and a `0`
+otherwise.
+
+```sh
+if ask-yn "Don't do a task?" -i; then
+    echo "Task canceled"
+else
+    echo "Doing a task"
+fi
+```
