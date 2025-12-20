@@ -19,9 +19,9 @@ fi
 The output in this case should look something like the following. Program
 output is in **bold**, user input is in _italic_:
 
-> **Do a task?** _maybe_ <br />
-> **Unrecognized response! Do a task?** <br />
-> **Unrecognized response! Do a task?** _yes_ <br />
+> **Do a task? \[y/n\]** _maybe_ <br />
+> **Unrecognized response! Do a task? \[y/n\]** <br />
+> **Unrecognized response! Do a task? \[y/n\]** _yes_ <br />
 > Doing a task
 
 ### With Default Argument
@@ -39,8 +39,8 @@ fi
 The output in this case should look something like the following. Program
 output is in **bold**, user input is in _italic_:
 
-> **Do a task?** _maybe_ <br />
-> **Unrecognized response! Do a task?** <br />
+> **Do a task? \[y/N\]** _maybe_ <br />
+> **Unrecognized response! Do a task? \[y/N\]** <br />
 > Task canceled
 
 ### Invert Return code

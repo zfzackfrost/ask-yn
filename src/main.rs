@@ -21,7 +21,10 @@ fn main() -> ExitCode {
     let input = std::io::stdin();
     let mut output = std::io::stdout();
 
-    print!("{} ", cli.prompt);
+    let options_msg = fmt_options_message(&cli);
+    let prompt = format!("{} {options_msg}", cli.prompt);
+
+    print!("{} ", prompt);
     if let Err(err) = output.flush() {
         eprintln!("{err}");
         return ExitCode::from(ERROR_CODE);
@@ -51,8 +54,27 @@ fn main() -> ExitCode {
         } else if line == "n" || line == "no" {
             break exit_failure;
         } else {
-            print!("Unrecognized response! {} ", cli.prompt);
+            print!("Unrecognized response! {} ", prompt);
             output.flush().unwrap();
         }
     }
+}
+
+fn fmt_options_message(cli: &Cli) -> String {
+    let y = if let Some(default) = cli.default.as_ref()
+        && default.starts_with('y')
+    {
+        'Y'
+    } else {
+        'y'
+    };
+    let n = if let Some(default) = cli.default.as_ref()
+        && default.starts_with('n')
+    {
+        'N'
+    } else {
+        'n'
+    };
+
+    format!("[{y}/{n}]")
 }
